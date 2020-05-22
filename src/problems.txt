@@ -1,0 +1,15 @@
+Flowers: https://codeforces.com/contest/474/problem/D
+Devu and Partitioning of the Array: https://codeforces.com/contest/439/problem/C
+Hacking Cypher: https://codeforces.com/contest/490/problem/C
+Short Program: https://codeforces.com/contest/879/problem/C
+Alternating Current: https://codeforces.com/contest/343/problem/B
+Array Restoration: https://codeforces.com/contest/1023/problem/D
+Inna and Nine: https://codeforces.com/contest/374/problem/B
+Down or Right: https://codeforces.com/contest/1023/problem/E
+Queue: https://codeforces.com/contest/490/problem/B
+Kefa and Dishes: https://codeforces.com/contest/580/problem/D
+Kefa and Park: https://codeforces.com/contest/580/problem/C
+MADMAX: https://codeforces.com/contest/918/problem/D
+Rational Resistance: https://codeforces.com/contest/343/problem/A
+Kefa and Company: https://codeforces.com/contest/580/problem/B
+Inna and Huge Candy Matrix: https://codeforces.com/contest/400/problem/C
