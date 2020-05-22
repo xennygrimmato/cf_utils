@@ -24,7 +24,7 @@ class SpecialProblems:
         return "https://codeforces.com/contest/{contestId}/problem/{index}".format(contestId=submission['contestId'],
                                                                                    index=submission['problem']['index'])
 
-    async def get_problems_by_handle(self, handle: str, filter_fn: Callable) -> Set[Any]:
+    def get_problems_by_handle(self, handle: str, filter_fn: Callable) -> Set[Any]:
         submissions = self.cf_api.user_status(handle=handle).get('result')
         return set([(submission['problem']['name'], self.get_problem_link(submission)) for submission in submissions
                     if submission['verdict'] == 'OK' and filter_fn(submission)])
