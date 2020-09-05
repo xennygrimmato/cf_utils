@@ -30,7 +30,6 @@ class ContestHelper(cf_base_class.CFBaseClass):
         submission_id_to_code = {}
         failed = 0
         succeeded = 0
-        submissions = submissions[:500]
         for submission in submissions:
             author = self.get_author(submission)
             if author not in author_to_submission:
