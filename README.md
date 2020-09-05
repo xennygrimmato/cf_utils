@@ -7,3 +7,6 @@
 
 ### Find common problems solved by Codeforces users 
 `python problems.py <MIN_PROBLEM_RATING> <user_1> <user_2> ...`
+
+### Find all submissions for a contest grouped by user and problem (WIP)
+`python contests.py`
