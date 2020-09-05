@@ -19,27 +19,55 @@ class ContestHelper(cf_base_class.CFBaseClass):
         status = self.cf_api.contest_status(contest_id=contest_id)
         return status
 
-    # TODO(xennygrimmato): Make method static
     def get_author(self, submission):
         return submission['author']['members'][0]['handle']
 
     def group_submissions_by_author(self, submissions):
         author_to_submission = {}
-        for submission in submissions:
+        failed = 0
+        succeeded = 0
+        for submission in submissions[:100]:
             author = self.get_author(submission)
             if author not in author_to_submission:
                 author_to_submission[author] = []
             author_to_submission[author].append(submission)
+        for author in author_to_submission:
+            try:
+                problemwise_mapping = self.get_submissions_of_author_grouped_by_problem(author_to_submission[author])
+                author_to_submission[author] = problemwise_mapping
+                succeeded += 1
+            except ValueError as ve:
+                failed += 1
+        print("success: {0}, failure: {1}".format(succeeded, failed))
         return author_to_submission
 
     def get_code(self, contest_id, submission_id):
         return self.cf_parser.get_solution(contest_id=contest_id, submit_id=submission_id)
 
+    def get_submissions_of_author_grouped_by_problem(self, soafc):
+        """Given all submissions made by an author in a contest, group them by problem ID.
+
+        Args:
+            - soafc: List of submissions made by an author in a contest
+
+        Returns:
+            - Dict[Problem, List[Submission]]: Mapping from problem to all submissions for that problem
+        """
+        problem_submission_map = {}
+        for submission in soafc:
+            sub_id = submission['id']
+            prob_id = submission['problem']['index']
+            code = self.get_code(submission['problem']['contestId'], sub_id)
+            if prob_id not in problem_submission_map:
+                problem_submission_map[prob_id] = []
+            problem_submission_map[prob_id].append({'submission': submission,
+                                                    'code': code})
+        return problem_submission_map
+
 
 if __name__ == '__main__':
     ch = ContestHelper()
     finished_contests = ch.get_contests(phase='FINISHED')
-    all_submissions = ch.get_submissions(3)['result']
+    all_submissions = ch.get_submissions(1409)['result']
     author_submission_mapping = ch.group_submissions_by_author(all_submissions)
-    code = ch.get_code(3, 90068560)
-    print(code)
+    print(author_submission_mapping)
