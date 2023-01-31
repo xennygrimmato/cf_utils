@@ -8,7 +8,7 @@ Frozen-Flask==0.15
 icalendar==4.0.6
 idna==2.9
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 lxml==4.5.1
 MarkupSafe==1.1.1
 python-dateutil==2.8.1
